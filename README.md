@@ -53,7 +53,7 @@ $$
 where:
 
 * Σ is the covariance matrix
-* \boldsymbol{v} represents the eigenvectors (directions of maximum variance)
+* \( \boldsymbol{v} \) represents the eigenvectors (directions of maximum variance)
 * λ represents the eigenvalues (magnitude of variance along each eigenvector)
 
 This technique, through dimensionality reduction, allowed me to retain the biological significance of the gene expression data while reducing its complexity. By focusing on the top principal components I captured the major sources of variability in the dataset without losing meaningful biological information.
