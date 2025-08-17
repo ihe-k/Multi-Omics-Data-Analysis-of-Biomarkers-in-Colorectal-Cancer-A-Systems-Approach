@@ -1,0 +1,2 @@
+# Multi-Omics-Data-Analysis-of-Biomarkers-in-Colorectal-Cancer-A-Systems-Approach
+This project applied a systems-level approach to identify key biomarkers in colorectal cancer (CRC), utilising advanced statistical methods and multi-omics data to uncover patterns in gene expression. The findings enhance our understanding of tumour biology and support precision medicine and health system optimisation.
