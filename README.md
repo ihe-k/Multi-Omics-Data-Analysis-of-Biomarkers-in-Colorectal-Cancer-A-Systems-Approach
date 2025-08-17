@@ -70,26 +70,32 @@ By integrating statistical inference, dimensionality reduction, and clustering t
 * Platforms: RStudio, SPSS for clustering and preprocessing
 * Visuals: PCA biplots, dendrograms, volcano plots and MDS plots
 
-Broader Implications
+## Broader Implications
 This analysis illustrates how molecular profiling and dimensionality reduction can:
-Support precision oncology by identifying clinically relevant biomarkers
-Enable health system planning through patient stratification
-Reveal biological pathways for therapeutic development
-Serve as a computational model foundation for studying social determinants, such as the effect of digital misinformation on patient behaviour and outcomes
 
-Future Directions
-1. Multi-Omics Integration Combine transcriptomics with proteomics, metabolomics, and epigenetics for a fuller biological picture.
-2. Longitudinal Modelling Link gene expression with patient outcomes (e.g., survival, treatment response) over time.
-3. Machine Learning Employ ensemble learning, SVMs, or deep learning for enhanced classification and biomarker discovery.
-4. Misinformation and Health Behaviour
-Model how misinformation influences diagnosis delays or treatment refusal
-Integrate social media trends with EHR and molecular data
-Collaborate with platforms (e.g., Meta, Google) to link misinformation spread with clinical impact
+* Support precision oncology by identifying clinically relevant biomarkers
+* Enable health system planning through patient stratification
+* Reveal biological pathways for therapeutic development
+* Serve as a computational model foundation for studying social determinants, such as the effect of digital misinformation on patient behaviour and outcomes
 
-Reproducibility
-All preprocessing, statistical testing, and visualisation scripts are shared in the repository. This project adheres to open science and reproducible research standards.
+## Future Directions
+1. Multi-Omics Integration
+   Combine transcriptomics with proteomics, metabolomics, and epigenetics for a fuller biological picture.
+3. Longitudinal Modelling
+   Link gene expression with patient outcomes (e.g., survival, treatment response) over time.
+5. Machine Learning
+    Employ ensemble learning, SVMs, or deep learning for enhanced classification and biomarker discovery.
+7. Misinformation and Health Behaviour
+* Model how misinformation influences diagnosis delays or treatment refusal
+* Integrate social media trends with EHR and molecular data
+* Collaborate with platforms (e.g., Google or Microsoft) to link misinformation spread with clinical impact
 
-Repository Structure
+## Reproducibility
+All preprocessing, statistical testing and visualisation scripts are shared in the repository. This project adheres to open science and reproducible research standards.
+
+## Repository Structure
+
+```plaintext
 📁 GeneExpression-CRC/
 ├── README.md                 # Project summary and methodology
 ├── report/                  
@@ -98,9 +104,11 @@ Repository Structure
 ├── scripts/                 # R and SPSS scripts for analysis
 ├── data/                    # Cleaned gene expression dataset (anonymised)
 ├── .gitignore
+```
 
-Citation & Acknowledgements
+## Citation & Acknowledgements
 Please cite the project if using methods or results. Tools and literature referenced include:
+
 Vaquerizas, J. M., Conde, L., Yankilevich, P., Cabezon, A., Minguez, P., Diaz-Uriarte, R., Al-Shahrour, F., Herrero, J., & Dopazo, J. (2005). GEPAS, an experiment-oriented pipeline for the analysis of microarray gene expression data. Nucleic Acids Research, 33(Web Server), W616–W620. https://doi.org/10.1093/nar/gki500
 D’haeseleer, P. (2005). How does gene expression clustering work? Nat Biotechnol. Dec:23(12):1499-501. doi: 10.1038/nbt1205-1499. PMID: 16333293.
 Meunier, B., Dumas, E., Piec, I., Béchet, D., Hébraud, M., & Hocquette, J. (2007). Assessment of Hierarchical Clustering Methodologies for proteomic Data Mining J. Proteome Res. 2007, 6 (1), 358−366. Journal of Proteome Research, 6(3), 1215. https://doi.org/10.1021/pr078001e
