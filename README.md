@@ -53,48 +53,60 @@ $$
 where:
 
 * Σ is the covariance matrix
-The eigenvector \( \boldsymbol{v} \) corresponds to the eigenvalue \( \lambda \).
-
-* \( \boldsymbol{v} \) represents the eigenvectors (directions of maximum variance)
+* **v** represents the eigenvectors (directions of maximum variance)
 * λ represents the eigenvalues (magnitude of variance along each eigenvector)
 
 This technique, through dimensionality reduction, allowed me to retain the biological significance of the gene expression data while reducing its complexity. By focusing on the top principal components I captured the major sources of variability in the dataset without losing meaningful biological information.
 
-3. Statistical Analysis and Clustering of Gene Expression Profiles
+## 3. Statistical Analysis and Clustering of Gene Expression Profiles
 Multidimensional scaling (MDS) visually confirmed clustering of biomarkers aligned with PCA components, illustrating functional similarity among genes. Distance measures and stress values indicated a strong model fit (RSQ = 0.90582, stress = 0.16287), reinforcing the validity of the clustering approach.
 For patient stratification, TwoStep Cluster Analysis was performed. This method combines pre-clustering with agglomerative hierarchical clustering, making it ideal for mixed-type biomedical data such as gene expression and patient-level variability. The resulting dendrogram and silhouette analysis revealed two dominant patient groups, corresponding primarily to upregulated and downregulated biomarker profiles.
+
 Although the cluster cohesion score was rated as fair (0.4), excluding outlier biomarkers (Genes 07 and 28) improved clarity and model fit. The model’s RSQ (0.90150) and stress value (0.20503) further validated its robustness. The hierarchical components of the TwoStep algorithm helped identify nested structure in the data, reflecting biologically relevant subgrouping.
+
 This multi-method clustering approach, supported by PCA, MDS, and hierarchical TwoStep Cluster Analysis, enhances the interpretability of gene expression data and supports applications in precision oncology and health system stratification. Such insights can guide resource allocation, screening policies, and personalised treatment interventions.
 
-3.1 Dimensionality Reduction and Visualisation
+### 3.1 Dimensionality Reduction and Visualisation
 To explore high-dimensional gene expression data, Principal Component Analysis (PCA) and Multidimensional Scaling (MDS) were employed. PCA reduced the dimensionality of the 15 selected biomarkers, preserving approximately 67.2% of the total variance across four principal components. A 3D biplot visually separated biomarkers based on functional clustering, with key genes (e.g., TGFB1, TGFB3, EGFR, MMP2) heavily loading on Component 1.
+
 MDS provided a complementary visualisation by projecting biomarker distances into two dimensions. The spatial distribution mirrored PCA-derived clusters, showing tight grouping of functionally related genes alongside identifiable outliers (e.g., Gene 07, Gene 28). Model fit was strong (RSQ = 0.90582, Stress = 0.16287), supporting the validity of the dimensionality reduction approach.
 
-3.2 Gene Expression Filtering and Feature Selection
+### 3.2 Gene Expression Filtering and Feature Selection
 To enhance biological interpretability and statistical power, a filtering step was introduced based on ΔΔCt thresholds. Biomarkers exhibiting expression changes beyond ±0.6 ΔΔCt were retained, narrowing the focus to genes with the most biologically meaningful regulation. This reduced noise, improved PCA factor loadings, and aligned selected genes with known oncogenic pathways, such as EGFR, PI3K-AKT, and TGF-β signalling.
 
-3.3 Patient Stratification via Clustering
+### 3.3 Patient Stratification via Clustering
 TwoStep Cluster Analysis combines k-means pre-clustering with agglomerative hierarchical clustering, enabling automatic detection of subgroup structure in mixed-type datasets. This unsupervised method accommodates both continuous and categorical variables and determines the optimal number of clusters. Results revealed two distinct patient groups, broadly corresponding to upregulated and downregulated gene expression patterns.
+
 Cluster quality score was 0.4 (fair), improving after exclusion of outlier biomarkers (Genes 07 and 28). This supports refined feature engineering as a means to enhance interpretability and classification accuracy.
+
 This stratification highlights the potential for precision medicine, enabling molecular phenotypes to be mapped onto clinical subgroups — critical for health systems optimising resource allocation, screening protocols, and targeted therapies.
 
-3.3.1 Validating a Hierarchical Cluster Analysis
+### 3.4 Validating a Hierarchical Cluster Analysis
 To further strengthen patient stratification and gene expression profiling, Hierarchical Cluster Analysis (HCA) was conducted. This approach complements previous multivariate techniques like PCA and MDS by enabling visual and statistical exploration of nested clustering structures.
 
-3.3.2 Methodology
+### 3.4.1 Methodology
 The analysis employed Ward’s Method as the clustering algorithm, using Euclidean distance as the dissimilarity measure. Prior to clustering, all values were range-standardised from –1 to 1 to mitigate the impact of scale differences and ensure meaningful biological comparison.
 Ward’s method was selected due to its strong statistical basis and proven utility in proteomics (Key, 2012). In comparison studies, it consistently outperformed other aggregation strategies—particularly when combined with Pearson-based or Euclidean distance metrics (Meunier et al., 2007).
 “87% of 28 reviewed proteomic studies used either Euclidean distance or the Pearson coefficient for HCA” (Meunier et al., 2007).
 
-3.3.3 Biological and Analytical Rationale
+### 3.4.2 Biological and Analytical Rationale
 HCA is especially valuable when:
-Grouping genes with similar expression profiles to discover co-regulated biomarkers
-Classifying tumour samples without prior biological assumptions
-Visualising the hierarchical relationships between variables in complex, high-dimensional data (Vaquerizas et al. 2005; D’haeseleer, 2005)
+
+* Grouping genes with similar expression profiles to discover co-regulated biomarkers
+* Classifying tumour samples without prior biological assumptions
+* Visualising the hierarchical relationships between variables in complex, high-dimensional data (Vaquerizas et al. 2005; D’haeseleer, 2005)
+
 In two-way HCA, both patients (columns) and genes (rows) are clustered, enabling simultaneous observation of patient subgrouping and biomarker co-expression patterns. The result is a dendrogram that reveals biological structure in the form of branching clusters. Genes or patients connected by shorter branches are mathematically more similar—this aids in the discovery of functionally coherent gene groups or clinically relevant patient subsets.
+
 Ward’s method minimises the total error sum of squares (ESS) within clusters at each iteration, combining the two clusters that result in the smallest increase in ESS. The goal is to reduce the amount of information lost at every merging step:
-ESS = Σ (xᵢⱼ - x̄ⱼ)²
-Where: j is an index for each cluster nj is the number of objects in cluster j xij is the value of object i in cluster j x̄j is the mean of cluster j
+
+ESS = Σ_j=1^k Σ_i=1^{n_j} (x_ij - x̄_j)^2
+
+Where:
+- j = cluster index (1 to k)
+- n_j = number of objects in cluster j
+- x_ij = value of object i in cluster j
+- x̄_j = mean of cluster j
 
 3.3.4 Preprocessing Considerations
 A key challenge in hierarchical clustering, particularly in omics data, is the presence of systematic technical variation, which can obscure true biological patterns. To mitigate this, data were standardised before clustering, and missing values were imputed where necessary. This ensures clustering is driven by biological signal rather than noise.
