@@ -100,7 +100,7 @@ In two-way HCA, both patients (columns) and genes (rows) are clustered, enabling
 
 Ward’s method minimises the total error sum of squares (ESS) within clusters at each iteration, combining the two clusters that result in the smallest increase in ESS. The goal is to reduce the amount of information lost at every merging step:
 
-![Equation](<img src="https://github.com/ihe-k/Multi-Omics-Data-Analysis-of-Biomarkers-in-Colorectal-Cancer-A-Systems-Approach/blob/main/Wards_eq.png?raw=true" width="200" />)
+<img src="https://github.com/ihe-k/Multi-Omics-Data-Analysis-of-Biomarkers-in-Colorectal-Cancer-A-Systems-Approach/blob/main/Wards_eq.png?raw=true" width="200" />
 
 3.3.4 Preprocessing Considerations
 A key challenge in hierarchical clustering, particularly in omics data, is the presence of systematic technical variation, which can obscure true biological patterns. To mitigate this, data were standardised before clustering, and missing values were imputed where necessary. This ensures clustering is driven by biological signal rather than noise.
