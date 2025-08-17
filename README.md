@@ -9,60 +9,66 @@ By integrating statistical inference, dimensionality reduction, and clustering t
 * Themes: Cancer genomics, precision medicine, misinformation and systems health modelling 
 * Core Methods: PCA, MDS, hierarchical clustering, t-tests, logistic regression and bootstrapping
 
-Objectives
-Select biologically relevant biomarkers via ΔΔCt thresholds and statistical filtering
-Reduce dimensionality using PCA to uncover functional gene groupings
-Classify CRC patients into subgroups with TwoStep and hierarchical clustering
-Validate clustering and component robustness with bootstrapping and significance tests
-Explore future applications in misinformation modelling and health systems strategy
+## Objectives
+* Select biologically relevant biomarkers via ΔΔCt thresholds and statistical filtering
+* Reduce dimensionality using PCA to uncover functional gene groupings
+* Classify CRC patients into subgroups with TwoStep and hierarchical clustering
+* Validate clustering and component robustness with bootstrapping and significance tests
+* Explore future applications in misinformation modelling and health systems strategy
 
-Dataset Summary
-Input: ΔΔCt values (relative gene expression from qPCR data)
-Biomarkers: 42 candidate genes → 15 selected via biological filtering and PCA suitability
-Samples: Gene expression profiles from individual colorectal cancer patients
+## Dataset Summary
+* Input: ΔΔCt values (relative gene expression from qPCR data)
+* Biomarkers: 42 candidate genes → 15 selected via biological filtering and PCA suitability
+* Samples: Gene expression profiles from individual colorectal cancer patients
 
-Methodology
-🔹 1. Data Preprocessing & Filtering
-Missing values imputed (series mean)
-Z-score standardisation and autoscaling for PCA and clustering
-Range normalisation (–1 to 1) for Euclidean distance calculations
-ΔΔCt threshold of ±0.6 applied to retain meaningful biological signals
-🔹 2. Principal Component Analysis (PCA)
-Reduced 15 genes to 4 components explaining 67.2% variance
-Varimax rotation enhanced interpretability
-Top-loading genes: TGFB3, MMP2, CDK6, EGFR
-🔹 3. Multidimensional Scaling (MDS)
-Supported PCA results and revealed gene co-expression distances
-Strong fit (RSQ = 0.90582, Stress = 0.16287)
-🔹 4. TwoStep Clustering
-Identified two patient subgroups based on expression profiles
-Cluster quality = 0.4 (fair), improved with outlier exclusion
-Clusters corresponded to upregulated vs. downregulated profiles
-🔹 5. Hierarchical Cluster Analysis (HCA)
-Ward’s Method with Euclidean distance used for nested clustering
-Confirmed gene groupings and patient stratification
-Dendrograms revealed 3 major gene clusters
-🔹 6. Statistical Testing & Biological Validation
-Paired-sample t-test: Selected genes were more downregulated (p < 0.005)
-Pairwise t-tests (Bonferroni-corrected) showed 16 significant gene pairs
-Volcano plot: Upregulated – EGFR, TGFB1, TGFB3; Downregulated – BID
-🔹 7. Predictive Modelling
-Logistic regression identified significant predictors (e.g., Gene 03, 21, 37)
-ROC curve AUC analysis confirmed predictive strength (accuracy ~80%)
-Feature elimination balanced interpretability and performance
+## Methodology
+1. Data Preprocessing & Filtering
+* Missing values imputed (series mean)
+* Z-score standardisation and autoscaling for PCA and clustering
+* Range normalisation (–1 to 1) for Euclidean distance calculations
+* ΔΔCt threshold of ±0.6 applied to retain meaningful biological signals
 
-Key Findings
-Biologically meaningful clusters emerged from PCA and HCA
-EGFR, TGFB1, TGFB3, and MMP2 were highly influential biomarkers
-Two molecular patient subtypes may inform targeted treatment strategies
-Volcano plot and pairwise tests confirmed expression significance
-Bootstrapping validated component and cluster stability (n = 27,500 iterations)
+2. Principal Component Analysis (PCA)
+* Reduced 15 genes to 4 components explaining 67.2% variance
+* Varimax rotation enhanced interpretability
+* Top-loading genes: TGFB3, MMP2, CDK6, EGFR
 
-Tools & Technologies
-Programming Languages: R, SPSS
-Libraries Used: limma, ggplot2, factoextra, cluster, MASS
-Platforms: RStudio, SPSS for clustering and preprocessing
-Visuals: PCA biplots, dendrograms, volcano plots, MDS plots
+3. Multidimensional Scaling (MDS)
+* Supported PCA results and revealed gene co-expression distances
+* Strong fit (RSQ = 0.90582, Stress = 0.16287)
+
+4. TwoStep Clustering
+* Identified two patient subgroups based on expression profiles
+* Cluster quality = 0.4 (fair), improved with outlier exclusion
+* Clusters corresponded to upregulated vs. downregulated profiles
+
+5. Hierarchical Cluster Analysis (HCA)
+* Ward’s Method with Euclidean distance used for nested clustering
+* Confirmed gene groupings and patient stratification
+* Dendrograms revealed 3 major gene clusters
+
+6. Statistical Testing & Biological Validation
+* Paired-sample t-test: Selected genes were more downregulated (p < 0.005)
+* Pairwise t-tests (Bonferroni-corrected) showed 16 significant gene pairs
+* Volcano plot: Upregulated – EGFR, TGFB1, TGFB3; Downregulated – BID
+
+7. Predictive Modelling
+* Logistic regression identified significant predictors (e.g., Gene 03, 21, 37)
+* ROC curve AUC analysis confirmed predictive strength (accuracy ~80%)
+* Feature elimination balanced interpretability and performance
+
+## Key Findings
+* Biologically meaningful clusters emerged from PCA and HCA
+* EGFR, TGFB1, TGFB3, and MMP2 were highly influential biomarkers
+* Two molecular patient subtypes may inform targeted treatment strategies
+* Volcano plot and pairwise tests confirmed expression significance
+* Bootstrapping validated component and cluster stability (n = 27,500 iterations)
+
+## Tools & Technologies
+* Programming Languages: R, SPSS
+* Libraries Used: limma, ggplot2, factoextra, cluster, MASS
+* Platforms: RStudio, SPSS for clustering and preprocessing
+* Visuals: PCA biplots, dendrograms, volcano plots and MDS plots
 
 Broader Implications
 This analysis illustrates how molecular profiling and dimensionality reduction can:
