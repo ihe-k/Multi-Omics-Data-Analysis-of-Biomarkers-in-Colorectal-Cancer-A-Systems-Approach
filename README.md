@@ -86,15 +86,16 @@ To further strengthen patient stratification and gene expression profiling, Hier
 
 ### 3.4.1 Methodology
 The analysis employed Ward’s Method as the clustering algorithm, using Euclidean distance as the dissimilarity measure. Prior to clustering, all values were range-standardised from –1 to 1 to mitigate the impact of scale differences and ensure meaningful biological comparison.
-Ward’s method was selected due to its strong statistical basis and proven utility in proteomics (Key, 2012). In comparison studies, it consistently outperformed other aggregation strategies—particularly when combined with Pearson-based or Euclidean distance metrics (Meunier et al., 2007).
-“87% of 28 reviewed proteomic studies used either Euclidean distance or the Pearson coefficient for HCA” (Meunier et al., 2007).
+
+Ward’s method was selected due to its strong statistical basis and proven utility in proteomics (Meunier et al. 2007). In comparison studies, it consistently outperformed other aggregation strategies—particularly when combined with Pearson-based or Euclidean distance metrics (Meunier et al. 2007).
+“87% of 28 reviewed proteomic studies used either Euclidean distance or the Pearson coefficient for HCA” (Meunier et al. 2007).
 
 ### 3.4.2 Biological and Analytical Rationale
 HCA is especially valuable when:
 
 * Grouping genes with similar expression profiles to discover co-regulated biomarkers
 * Classifying tumour samples without prior biological assumptions
-* Visualising the hierarchical relationships between variables in complex, high-dimensional data (Vaquerizas et al. 2005; D’haeseleer, 2005)
+* Visualising the hierarchical relationships between variables in complex and high-dimensional data (Vaquerizas et al. 2005; D’haeseleer, 2005)
 
 In two-way HCA, both patients (columns) and genes (rows) are clustered, enabling simultaneous observation of patient subgrouping and biomarker co-expression patterns. The result is a dendrogram that reveals biological structure in the form of branching clusters. Genes or patients connected by shorter branches are mathematically more similar—this aids in the discovery of functionally coherent gene groups or clinically relevant patient subsets.
 
@@ -102,77 +103,104 @@ Ward’s method minimises the total error sum of squares (ESS) within clusters a
 
 <img src="https://github.com/ihe-k/Multi-Omics-Data-Analysis-of-Biomarkers-in-Colorectal-Cancer-A-Systems-Approach/blob/main/Wards_eq.png?raw=true" width="200" />
 
-3.3.4 Preprocessing Considerations
+### 3.3.4 Preprocessing Considerations
 A key challenge in hierarchical clustering, particularly in omics data, is the presence of systematic technical variation, which can obscure true biological patterns. To mitigate this, data were standardised before clustering, and missing values were imputed where necessary. This ensures clustering is driven by biological signal rather than noise.
-A good clustering method:
-Preserves biological relevance of distance metrics
-Improves pattern discovery in heatmaps or dendrograms
-Minimises bias from instrumentation artifacts
 
-3.3.5 Results and Interpretation
+A good clustering method:
+* Preserves biological relevance of distance metrics
+* Improves pattern discovery in heatmaps or dendrograms
+* Minimises bias from instrumentation artifacts
+
+### 3.3.5 Results and Interpretation
 HCA confirmed three primary gene clusters, broadly aligning with PCA loadings and previously identified co-expression groups.
+
 Outlier biomarkers (e.g., Genes 07 and 28) formed isolated branches, validating their exclusion in other models.
+
 The dendrogram structure supports the notion of nested regulatory networks and is consistent with known biological roles of TGFB, EGFR, CDK, and BID pathways in colorectal cancer.
+
 Inclusion of hierarchical clustering validates previously discovered gene clusters and enhances biological interpretability of patient stratification. As a complementary technique to PCA and TwoStep analysis, HCA adds robustness to unsupervised classification and supports systems-level exploration of tumour heterogeneity—aligning with broader goals in precision oncology and health system modelling.
 
-4 Statistical Testing and Biological Validation
-4.1 Statistical Tests
+## 4 Statistical Testing and Biological Validation
+
+### 4.1 Statistical Tests
 A paired samples t-test was conducted to compare expression between selected and excluded genes:
-t = –3.198, p < 0.005
-Mean ΔΔCt difference = –0.395 (95% CI [–0.57, –0.13])
+
+* t = –3.198, p < 0.005
+* Mean ΔΔCt difference = –0.395 (95% CI [–0.57, –0.13])
 Interpretation: Selected genes were significantly more downregulated, reinforcing the validity of the filtering approach.
+
 Using R’s limma package, pairwise t-tests (Bonferroni-adjusted) were performed on gene pairs (n = 105 combinations). Sixteen gene pairs showed significant differential expression after correction. Key examples include:
-BID (Gene05) vs. TGFB1 (Gene37)
-CDK6 (Gene14) vs. EGFR (Gene21)
+
+* BID (Gene05) vs. TGFB1 (Gene37)
+* CDK6 (Gene14) vs. EGFR (Gene21)
+
 A volcano plot illustrated both the magnitude and significance of expression differences:
-Top upregulated genes: EGF, EGFR, TGFB1, TGFB3
-Top downregulated gene: BID
+* Top upregulated genes: EGF, EGFR, TGFB1, TGFB3
+* Top downregulated gene: BID
+
 These results support these biomarkers as potential targets for diagnostic panels or therapeutic development.
 
-4.2 Validation and Model Robustness
+### 4.2 Validation and Model Robustness
 Bootstrapping with resampling (n = 27,500 replicates) was performed to validate the stability of biomarker clustering and component structure (Fig. 18). Confidence intervals confirmed the reliability of key PCA components and gene groupings.
-4.2.1 Statistical Testing and Data Normality
+
+#### 4.2.1 Statistical Testing and Data Normality
 To evaluate robustness of gene expression analysis and explore associations between biomarker profiles and cancer diagnosis, multiple statistical tests were applied:
-Normality Assessment: The Shapiro-Wilk test assessed data distribution. Based on outcomes, appropriate parametric (Independent T-Test) or non-parametric (Mann-Whitney U Test) methods compared patient subgroups.
-Correlation Analysis: Spearman’s rank correlation was chosen to explore biomarker relationships due to its robustness to non-normality and outliers, providing more reliable correlation estimates for high-dimensional, skewed biological data.
-5. Predictive Modelling
-5.1 Logistic Regression
+
+* Normality Assessment: The Shapiro-Wilk test assessed data distribution. Based on outcomes, appropriate parametric (Independent T-Test) or non-parametric (Mann-Whitney U Test) methods compared patient subgroups.
+* Correlation Analysis: Spearman’s rank correlation was chosen to explore biomarker relationships due to its robustness to non-normality and outliers, providing more reliable correlation estimates for high-dimensional, skewed biological data.
+
+## 5. Predictive Modelling
+
+### 5.1 Logistic Regression
 Binary logistic regression identified several genes as significant predictors of cancer diagnosis. Genes 03, 11, 15, 21, 23, and 37 exhibited strong associations with cancer, with Gene 03 showing a 63% higher likelihood of diagnosis per unit increase in expression. This highlights the potential of these genes in predictive frameworks.
-5.2 ROC Curve and AUC Analysis
+
+### 5.2 ROC Curve and AUC Analysis
 Receiver Operating Characteristic (ROC) curves and Area Under the Curve (AUC) calculations demonstrated reasonable discriminative power for genes like Gene 03, Gene 21, and Gene 37, though Gene 21 showed limited statistical significance (p = 0.08). Model refinement through feature elimination resulted in a slight decrease in predictive accuracy from 80% to 78%.
-5.3 Model Refinement and Feature Elimination
+
+### 5.3 Model Refinement and Feature Elimination
 To improve model interpretability and reduce overfitting, non-significant variables were removed:
-Genes 08, 15, 21, 23, and 31 were excluded based on their p-values and limited contribution to classification (Table 39, Table 40).
-After refinement, the model's prediction accuracy decreased slightly from 80% to 78%, indicating a marginal trade-off between parsimony and predictive power.
+
+* Genes 08, 15, 21, 23, and 31 were excluded based on their p-values and limited contribution to classification (Table 39, Table 40).
+* After refinement, the model's prediction accuracy decreased slightly from 80% to 78%, indicating a marginal trade-off between parsimony and predictive power.
 This finding suggests that while certain variables may not be individually significant, they may contribute to model stability through weak interaction effects.
 
-6. Implications for Systems Medicine and Health Systems Modelling
+## 6. Implications for Systems Medicine and Health Systems Modelling
 This study exemplifies the integration of systems thinking into health systems research by applying multivariate statistical methods to gene expression data. The findings suggest that identifying CRC biomarkers at the molecular level can guide patient stratification, improve therapeutic targeting, and optimise health system planning. The model developed here could inform resource allocation, early diagnosis, and personalised treatment strategies, ultimately improving patient outcomes.
+
 Beyond identifying molecular biomarkers and stratifying patient subgroups, the systems approach presented here can be expanded to understand the broader impact of misinformation on patient health behaviours, such as treatment-seeking and adherence. Misinformation propagated through social media platforms can lead to delays in diagnosis, refusal of effective treatments, or adoption of harmful alternatives thereby affecting patient outcomes and health system burdens.
+
 Leveraging the computational and statistical techniques applied in this study, future interdisciplinary projects could:
-Model how misinformation clusters correlate with patterns of healthcare avoidance or non-adherence in colorectal cancer or other diseases.
-Use social media and electronic health record (EHR) data integration to identify populations most vulnerable to misinformation-driven delays or treatment refusal.
-Develop predictive frameworks to anticipate misinformation-induced health disparities, guiding targeted educational or policy interventions.
-Collaborate with platforms such as Meta and Google to design real-time monitoring systems that link misinformation spread with measurable health impacts.
+
+* Model how misinformation clusters correlate with patterns of healthcare avoidance or non-adherence in colorectal cancer or other diseases.
+* Use social media and electronic health record (EHR) data integration to identify populations most vulnerable to misinformation-driven delays or treatment refusal.
+* Develop predictive frameworks to anticipate misinformation-induced health disparities, guiding targeted educational or policy interventions.
+* Collaborate with platforms such as Meta and Google to design real-time monitoring systems that link misinformation spread with measurable health impacts.
+
 This translational perspective highlights the synergy between biomarker-based precision medicine and systems-level analysis of sociotechnical information flows, critical for improving both clinical and public health outcomes.
 
-7. Reproducibility and Future Directions
+## 7. Reproducibility and Future Directions
 This analysis was designed with reproducibility in mind. All data preprocessing scripts, statistical analyses, and visualisation code are made available in the repository. Future research should focus on:
-Integrating multi-omics data (e.g., transcriptomics, proteomics, metabolomics) for deeper biological insights.
-Incorporating clinical phenotypes and electronic health records (EHRs) to refine patient stratification.
-Expanding the sample size and including longitudinal patient data for causal inference.
-Employing advanced machine learning techniques for improved predictive accuracy and model interpretability.
-Potential for Exploring Misinformation Impact on Disease Progression Building on the systems approach demonstrated here, future work could investigate how misinformation—especially on social media—affects disease progression and treatment outcomes in colorectal cancer. By integrating molecular biomarker data with patient behaviour metrics and misinformation exposure indices, researchers can model the influence of misinformation on treatment adherence, delays in diagnosis, and clinical trajectories. This interdisciplinary approach can inform targeted interventions to mitigate misinformation’s adverse effects, improving both individual patient outcomes and broader health system efficiency.
+
+* Integrating multi-omics data (e.g., transcriptomics, proteomics, metabolomics) for deeper biological insights.
+* Incorporating clinical phenotypes and electronic health records (EHRs) to refine patient stratification.
+* Expanding the sample size and including longitudinal patient data for causal inference.
+* Employing advanced machine learning techniques for improved predictive accuracy and model interpretability.
+
+### Potential for Exploring Misinformation Impact on Disease Progression
+Building on the systems approach demonstrated here, future work could investigate how misinformation—especially on social media—affects disease progression and treatment outcomes in colorectal cancer. By integrating molecular biomarker data with patient behaviour metrics and misinformation exposure indices, researchers can model the influence of misinformation on treatment adherence, delays in diagnosis, and clinical trajectories. This interdisciplinary approach can inform targeted interventions to mitigate misinformation’s adverse effects, improving both individual patient outcomes and broader health system efficiency.
 Additionally, collaborations across biomedical, computational social science, and health informatics fields will be essential to develop predictive frameworks and real-time monitoring systems linking misinformation dynamics to clinical impacts, advancing precision medicine and public health in tandem.
-8. Conclusion
+
+## 8. Conclusion
 This project successfully applied a systems-level approach to identify key biomarkers in CRC, utilising advanced statistical methods to uncover patterns in gene expression data. The findings provide valuable insights for precision medicine and health system optimisation, demonstrating the power of multi-omics data analysis in transforming clinical and health policy practices.
+
 Future research should build on these findings, incorporating broader datasets and advanced modelling techniques to further refine our understanding of CRC and its clinical implications, while also exploring the critical intersection of misinformation dynamics and health-seeking behaviour in the digital age. Investigating how misinformation influences patient outcomes and treatment adherence could enhance intervention strategies and health system resilience.
-9. Appendix and References
+
+## 9. Appendix and References
 Full tables, figures, and detailed statistical outputs are available in the project repository. Key references supporting the biological and computational methods used in this study are cited throughout the report.
 
-10. Suggestions for Future Work
-Integration with Proteomics and Metabolomics: Expanding the analysis to include proteomic and metabolomic data will provide a more comprehensive view of CRC biomarkers, capturing post-transcriptional modifications and metabolic alterations that may not be reflected in gene expression alone.
+## 10. Suggestions for Future Work
+* Integration with Proteomics and Metabolomics: Expanding the analysis to include proteomic and metabolomic data will provide a more comprehensive view of CRC biomarkers, capturing post-transcriptional modifications and metabolic alterations that may not be reflected in gene expression alone.
 Longitudinal Studies: Incorporating longitudinal clinical outcomes would allow for a more nuanced understanding of how gene expression changes over time and its association with CRC progression, treatment response, and survival.
-Machine Learning Approaches: Advanced machine learning models, such as ensemble methods or neural networks, could enhance predictive accuracy and identify new patterns in the data that might be missed by traditional statistical methods.
-Broader Clinical Applications: The integration of genetic data with clinical data (e.g., patient demographics, treatment histories, and imaging data) could further refine patient stratification, leading to more precise and individualised treatment plans.
-Exploring the Impact of Misinformation: Future work could investigate how misinformation, particularly on social media platforms, impacts disease progression, patient decision-making, and treatment adherence. Combining molecular biomarker data with behavioural and social data may provide new insights into mitigating misinformation’s effects on health outcomes.
+* Machine Learning Approaches: Advanced machine learning models, such as ensemble methods or neural networks, could enhance predictive accuracy and identify new patterns in the data that might be missed by traditional statistical methods.
+* Broader Clinical Applications: The integration of genetic data with clinical data (e.g., patient demographics, treatment histories, and imaging data) could further refine patient stratification, leading to more precise and individualised treatment plans.
+* Exploring the Impact of Misinformation: Future work could investigate how misinformation, particularly on social media platforms, impacts disease progression, patient decision-making, and treatment adherence. Combining molecular biomarker data with behavioural and social data may provide new insights into mitigating misinformation’s effects on health outcomes.
