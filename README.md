@@ -53,7 +53,7 @@ $$
 where:
 
 * Σ is the covariance matrix
-* The eigenvector \( \boldsymbol{v} \) and eigenvalue \( \lambda \) satisfy the equation \( \Sigma \boldsymbol{v} = \lambda \boldsymbol{v} \).
+The eigenvector \( \boldsymbol{v} \) corresponds to the eigenvalue \( \lambda \).
 
 * \( \boldsymbol{v} \) represents the eigenvectors (directions of maximum variance)
 * λ represents the eigenvalues (magnitude of variance along each eigenvector)
