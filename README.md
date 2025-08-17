@@ -1,8 +1,13 @@
-🧬 Gene Expression and Dimensionality Reduction in Colorectal Cancer
-Overview
+# Gene Expression and Dimensionality Reduction in Colorectal Cancer
+
+## Overview
 This project applies a systems-level bioinformatics approach to explore gene expression profiles in colorectal cancer (CRC). Using multivariate statistics and unsupervised machine learning, we identify key biomarkers, delineate molecular subgroups of patients, and uncover regulatory gene clusters relevant to CRC pathogenesis.
+
 By integrating statistical inference, dimensionality reduction, and clustering techniques (e.g., PCA, MDS, TwoStep, HCA), the analysis supports precision oncology, health systems optimisation, and lays the foundation for future interdisciplinary research into the impact of misinformation on health-seeking behaviour and treatment adherence in the digital age.
-📌 Focus: Molecular and systems-level stratification of CRC patients 🧠 Themes: Cancer genomics, precision medicine, misinformation, systems health modelling 🧭 Core Methods: PCA, MDS, hierarchical clustering, t-tests, logistic regression, bootstrapping
+
+* Focus: Molecular and systems-level stratification of CRC patients
+* Themes: Cancer genomics, precision medicine, misinformation and systems health modelling 
+* Core Methods: PCA, MDS, hierarchical clustering, t-tests, logistic regression and bootstrapping
 
 Objectives
 Select biologically relevant biomarkers via ΔΔCt thresholds and statistical filtering
