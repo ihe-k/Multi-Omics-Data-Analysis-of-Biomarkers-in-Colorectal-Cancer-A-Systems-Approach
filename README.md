@@ -47,13 +47,13 @@ Additionally, the covariance matrix and eigenvectors were calculated during PCA 
 ## Principal Component Analysis (PCA) Equation
 
 $$
-\Sigma \cdot \mathbf{v} = \lambda \cdot \mathbf{v}
+\Sigma \cdot \boldsymbol{v} = \lambda \cdot \boldsymbol{v}
 $$
 
 where:
 
 * Σ is the covariance matrix
-* \mathbf{v} represents the eigenvectors (directions of maximum variance)
+* \boldsymbol{v} represents the eigenvectors (directions of maximum variance)
 * λ represents the eigenvalues (magnitude of variance along each eigenvector)
 
 This technique, through dimensionality reduction, allowed me to retain the biological significance of the gene expression data while reducing its complexity. By focusing on the top principal components I captured the major sources of variability in the dataset without losing meaningful biological information.
