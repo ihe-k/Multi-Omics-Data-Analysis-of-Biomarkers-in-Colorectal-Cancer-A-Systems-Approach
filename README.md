@@ -100,13 +100,16 @@ In two-way HCA, both patients (columns) and genes (rows) are clustered, enabling
 
 Ward’s method minimises the total error sum of squares (ESS) within clusters at each iteration, combining the two clusters that result in the smallest increase in ESS. The goal is to reduce the amount of information lost at every merging step:
 
-ESS = Σ_{j=1}^k Σ_{i=1}^{n_j} (x_ij − x̄_j)^2
+```plaintext
+ESS = Σ from j=1 to k  Σ from i=1 to n_j  (x_ij − x̄_j)²
 
-Where j is the cluster index (1 to k),
-n_j is the number of objects in cluster j,
-x_ij is the value of object i in cluster j,
-and x̄_j is the mean of cluster j.
+Where:
+- j is the cluster index (1 to k)
+- n_j is the number of objects in cluster j
+- x_ij is the value of object i in cluster j
+- x̄_j is the mean of cluster j
 
+```
 
 3.3.4 Preprocessing Considerations
 A key challenge in hierarchical clustering, particularly in omics data, is the presence of systematic technical variation, which can obscure true biological patterns. To mitigate this, data were standardised before clustering, and missing values were imputed where necessary. This ensures clustering is driven by biological signal rather than noise.
