@@ -100,13 +100,12 @@ In two-way HCA, both patients (columns) and genes (rows) are clustered, enabling
 
 Ward’s method minimises the total error sum of squares (ESS) within clusters at each iteration, combining the two clusters that result in the smallest increase in ESS. The goal is to reduce the amount of information lost at every merging step:
 
-Inline math: $E = mc^2$
+ESS = Σ_{j=1}^k Σ_{i=1}^{n_j} (x_ij − x̄_j)^2
 
-Display math (on its own line):
-
-$$
-\text{ESS} = \sum_{j=1}^{k} \sum_{i=1}^{n_j} (x_{ij} - \bar{x}_j)^2
-$$
+Where j is the cluster index (1 to k),
+n_j is the number of objects in cluster j,
+x_ij is the value of object i in cluster j,
+and x̄_j is the mean of cluster j.
 
 
 3.3.4 Preprocessing Considerations
