@@ -51,27 +51,10 @@ $$
 \Sigma \cdot \mathbf{v} = \lambda \cdot \mathbf{v}
 $$
 
-## Principal Component Analysis (PCA) Equation
-
-In PCA, the eigenvectors \( \mathbf{v} \) and eigenvalues \( \lambda \) are calculated from the covariance matrix \( \Sigma \) through the equation:
-
-$$
-\Sigma \cdot \mathbf{v} = \lambda \cdot \mathbf{v}
-$$
-
-Where:
-- \( \Sigma \) is the covariance matrix,
-- \( \mathbf{v} \) is the eigenvector, and
-- \( \lambda \) is the eigenvalue.
-
-
-This equation represents the core concept behind PCA, which is used for dimensionality reduction in data analysis.
-
-
 where:
 
 Σ is the covariance matrix
- represents the eigenvectors (directions of maximum variance)
+\( \mathbf{v} \) represents the eigenvectors (directions of maximum variance)
 λ represents the eigenvalues (magnitude of variance along each eigenvector)
 
 This technique, through dimensionality reduction, allowed me to retain the biological significance of the gene expression data while reducing its complexity. By focusing on the top principal components I captured the major sources of variability in the dataset without losing meaningful biological information.
