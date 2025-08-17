@@ -29,12 +29,11 @@ Mathematically, the PCA can be represented as:
 X = T ⋅ P<sub>T</sub> + E
 
 where:
-X is the data matrix (gene expression values),
-T is the matrix of scores (coordinates of the data in the principal component space),
-P<sub>T</sub> is the matrix of eigenvectors (the loading vectors corresponding to each component),
-E is the residual matrix (error or unexplained variance).
+* X is the data matrix (gene expression values)
+* T is the matrix of scores (coordinates of the data in the principal component space),
+* P<sub>T</sub> is the matrix of eigenvectors (the loading vectors corresponding to each component),
+* E is the residual matrix (error or unexplained variance).
 
-The rotation matrix 
 The rotation matrix R was then used to adjust the principal component axes:
 
 T<sub>rot</sub> = T ⋅ R
@@ -53,9 +52,9 @@ $$
 
 where:
 
-Σ is the covariance matrix
-\( \mathbf{v} \) represents the eigenvectors (directions of maximum variance)
-λ represents the eigenvalues (magnitude of variance along each eigenvector)
+* Σ is the covariance matrix
+* \( \mathbf{v} \) represents the eigenvectors (directions of maximum variance)
+* λ represents the eigenvalues (magnitude of variance along each eigenvector)
 
 This technique, through dimensionality reduction, allowed me to retain the biological significance of the gene expression data while reducing its complexity. By focusing on the top principal components I captured the major sources of variability in the dataset without losing meaningful biological information.
 
