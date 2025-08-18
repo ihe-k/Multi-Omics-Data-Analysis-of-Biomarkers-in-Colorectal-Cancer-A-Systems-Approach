@@ -98,9 +98,9 @@ All preprocessing, statistical testing and visualisation scripts are shared in t
 ```plaintext
 📁 GeneExpression-CRC/
 ├── README.md                 # Project summary and methodology
-├── report/                  
-│   └── final_report.pdf     # Full report with detailed results and discussion
-├── tables_figures/                 # Plots and data visualisations (PCA, MDS, HCA, volcano)
+├── Report/                  
+│   └── Report.pdf     # Full report with detailed results and discussion
+├── Tables_Figures/                 # Plots and data visualisations (PCA, MDS, HCA, volcano)
 ├── .gitignore
 ```
 
