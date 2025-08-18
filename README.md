@@ -100,9 +100,7 @@ All preprocessing, statistical testing and visualisation scripts are shared in t
 ├── README.md                 # Project summary and methodology
 ├── report/                  
 │   └── final_report.pdf     # Full report with detailed results and discussion
-├── figures/                 # Plots and data visualisations (PCA, MDS, HCA, volcano)
-├── scripts/                 # R and SPSS scripts for analysis
-├── data/                    # Cleaned gene expression dataset (anonymised)
+├── tables_figures/                 # Plots and data visualisations (PCA, MDS, HCA, volcano)
 ├── .gitignore
 ```
 
